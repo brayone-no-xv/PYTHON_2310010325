@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>562</height>
+    <width>390</width>
+    <height>463</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <rect>
      <x>150</x>
      <y>180</y>
-     <width>191</width>
+     <width>221</width>
      <height>24</height>
     </rect>
    </property>
@@ -86,7 +86,7 @@
     <rect>
      <x>150</x>
      <y>110</y>
-     <width>191</width>
+     <width>221</width>
      <height>24</height>
     </rect>
    </property>
@@ -96,7 +96,7 @@
     <rect>
      <x>150</x>
      <y>80</y>
-     <width>191</width>
+     <width>221</width>
      <height>24</height>
     </rect>
    </property>
@@ -182,7 +182,7 @@
     <rect>
      <x>150</x>
      <y>140</y>
-     <width>191</width>
+     <width>221</width>
      <height>24</height>
     </rect>
    </property>
@@ -198,19 +198,6 @@
    </property>
    <property name="text">
     <string>UBAH</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="btnCetak">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>280</y>
-     <width>80</width>
-     <height>24</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>CETAK</string>
    </property>
   </widget>
   <widget class="QPushButton" name="btnHapus">
@@ -244,7 +231,7 @@
     <rect>
      <x>30</x>
      <y>430</y>
-     <width>351</width>
+     <width>341</width>
      <height>24</height>
     </rect>
    </property>
@@ -255,9 +242,9 @@
   <widget class="QPushButton" name="btnRead">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>460</y>
-     <width>351</width>
+     <x>300</x>
+     <y>280</y>
+     <width>71</width>
      <height>24</height>
     </rect>
    </property>
@@ -270,7 +257,7 @@
     <rect>
      <x>150</x>
      <y>240</y>
-     <width>191</width>
+     <width>221</width>
      <height>25</height>
     </rect>
    </property>
@@ -286,7 +273,7 @@
     <rect>
      <x>150</x>
      <y>210</y>
-     <width>191</width>
+     <width>221</width>
      <height>25</height>
     </rect>
    </property>
@@ -302,7 +289,7 @@
     <rect>
      <x>30</x>
      <y>310</y>
-     <width>351</width>
+     <width>341</width>
      <height>111</height>
     </rect>
    </property>

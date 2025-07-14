@@ -1,4 +1,6 @@
+# Mengimport library PyMySQL
 import pymysql
+
 def get_mysql():
     return pymysql.connect(
         host = 'localhost',

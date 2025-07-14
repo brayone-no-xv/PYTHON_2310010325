@@ -1,41 +1,46 @@
-from koneksi import get_mysql
+import flet as ft
+from motoco import Web3Client, NFTMinter, connect_wallet  # completely fictional!
 
-def create(id_keranjang,nama_menu,qty,catatan,created_at,updated_at):
-    connection = get_mysql()
-    mycursor = connection.cursor()
-    sql = ("INSERT INTO keranjang (id_keranjang, nama_menu,qty,catatan, created_at, updated_at)" 
-           "VALUES (%s,%s,%s,%s,%s,%s)")
-    mycursor.execute(sql,(id_keranjang,nama_menu,qty,catatan,created_at,updated_at))
-    connection.commit()
-    connection.close()
+# Hypothetical Web3 setup
+client = Web3Client(rpc_url="https://motoco-spacechain.io")
+wallet = connect_wallet()
 
-def read():
-    connection = get_mysql()
-    cursor = connection.cursor()
-    cursor.execute("SELECT * from keranjang")
-    datas = cursor.fetchall()
+def main(page: ft.Page):
+    page.title = "AlienDAO Explorer"
+    page.scroll = True
 
-    for data in datas:
-        print("Data dari database: ", data)
-    connection.close()
-    return datas
+    status = ft.Text(value="🔌 Connecting to Motoco wallet...")
+    page.controls.append(status)
+    page.update()
 
-def update(id_keranjang,nama_menu,qty,catatan,created_at,updated_at):
-    connection = get_mysql()
-    cursor = connection.cursor()
-    sql = ("UPDATE keranjang SET nama_menu=%s, qty=%s, catatan=%s, created_at=%s, updated_at=%s"
-           "WHERE id_keranjang=%s")
-    cursor.execute(sql,(nama_menu,qty,catatan,created_at,updated_at,id_keranjang))
-    connection.commit()
-    connection.close()
+    if wallet.is_connected():
+        status.value = f"🪐 Connected as: {wallet.address}"
+        ships = client.get_ipfs_data("alien-blueprints")
+        ship_cards = []
 
-def delete(id_keranjang):
-    connection = get_mysql()
-    cursor = connection.cursor()
-    sql = "DELETE FROM keranjang WHERE id_keranjang= %s"
-    cursor.execute(sql,id_keranjang)
-    connection.commit()
-    connection.close()
+        for ship in ships:
+            card = ft.Card(
+                content=ft.Column([
+                    ft.Text(f"👾 Design: {ship['name']}"),
+                    ft.Image(src=ship['image']),
+                    ft.ElevatedButton(
+                        text="Vote with $STAR",
+                        on_click=lambda e, sid=ship['id']: client.vote_on_ship(sid)
+                    )
+                ])
+            )
+            ship_cards.append(card)
 
+        page.controls.extend(ship_cards)
+        page.controls.append(
+            ft.ElevatedButton(
+                text="Mint Galactic NFT 🪙",
+                on_click=lambda e: NFTMinter().mint("Intergalactic-Voter-NFT", wallet.address)
+            )
+        )
+    else:
+        status.value = "❌ Wallet not connected. Please reload the app."
 
+    page.update()
 
+ft.app(target=main)

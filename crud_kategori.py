@@ -1,3 +1,4 @@
+# Mengimport koneksi mysql
 from koneksi import get_mysql
 
 def create(id_kategori,jenis_kategori,created_at,updated_at):
